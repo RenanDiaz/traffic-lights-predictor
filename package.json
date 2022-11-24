@@ -2,6 +2,7 @@
   "name": "traffic-lights-predictor",
   "version": "0.1.0",
   "private": true,
+  "main": "index.jsx",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
