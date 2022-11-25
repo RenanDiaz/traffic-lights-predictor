@@ -1,10 +1,23 @@
 import React, { useState } from 'react';
 import { Button, Col, Input, Row } from 'reactstrap';
+import { postLight } from '../../utils/api-client';
 import { SeparatorRow } from '../Utils';
 
 export function NewTrafficLight() {
   const [name, setName] = useState('');
   const [steps, setSteps] = useState(1);
+
+  const postNewLight = async () => {
+    const body = {
+      name,
+      steps,
+    };
+    const response = await postLight(body);
+    console.log({ response });
+    setName('');
+    setSteps(1);
+  };
+
   return (
     <>
       <Row>
@@ -33,7 +46,9 @@ export function NewTrafficLight() {
           </Row>
           <Row className="justify-content-center">
             <Col xs="auto">
-              <Button color="primary">Add</Button>
+              <Button color="primary" onClick={postNewLight}>
+                Add
+              </Button>
             </Col>
           </Row>
         </Col>
