@@ -1,18 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
-} from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from 'reactstrap';
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,28 +17,16 @@ export function Header() {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink className="nav-link" to="lights" onClick={collapse}>
+              <NavLink className="nav-link" to="lights" onClick={collapse} end>
                 Traffic lights
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className="nav-link" to="new" onClick={collapse}>
+              <NavLink className="nav-link" to="lights/new" onClick={collapse}>
                 New traffic light
               </NavLink>
             </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
         </Collapse>
       </Navbar>
     </div>

@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         element: <TrafficLights />,
       },
       {
-        path: 'new',
+        path: 'lights/new',
         element: <NewTrafficLight />,
       },
     ],

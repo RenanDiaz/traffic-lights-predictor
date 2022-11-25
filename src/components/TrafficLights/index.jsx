@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
 import { fetchLights } from '../../utils/api-client';
 import { SeparatorRow } from '../Utils';
@@ -25,6 +26,13 @@ export function TrafficLights() {
       <SeparatorRow height={15} />
       <Row>
         <Col xs="auto">
+          <Row className="justify-content-end mb-3">
+            <Col xs="auto">
+              <Link to="new">
+                <Button color="primary">New light</Button>
+              </Link>
+            </Col>
+          </Row>
           <Table dark>
             <thead>
               <tr>
