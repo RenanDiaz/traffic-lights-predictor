@@ -7,15 +7,12 @@ export function NewTrafficLight() {
   const [name, setName] = useState('');
   const [steps, setSteps] = useState(1);
 
-  const postNewLight = async () => {
-    const body = {
-      name,
-      steps,
-    };
-    const response = await postLight(body);
-    console.log({ response });
-    setName('');
-    setSteps(1);
+  const postNewLight = () => {
+    const body = { name, steps };
+    postLight(body).then(() => {
+      setName('');
+      setSteps(1);
+    });
   };
 
   return (

@@ -1,21 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Col, Row, Table } from 'reactstrap';
 import { fetchLights } from '../../utils/api-client';
 import { SeparatorRow } from '../Utils';
 
 export function TrafficLights() {
-  const trafficLights = [
-    {
-      id: 1,
-      name: 'Santa Cruz',
-      steps: 4,
-    },
-    {
-      id: 2,
-      name: 'Parque de las Madres',
-      steps: 2,
-    },
-  ];
+  const [trafficLights, setTrafficLights] = useState([]);
+
+  const updateTrafficLights = async () => {
+    const response = await fetchLights();
+    setTrafficLights(response);
+  };
+
+  useEffect(() => {
+    updateTrafficLights();
+  }, []);
 
   return (
     <>
@@ -36,9 +34,9 @@ export function TrafficLights() {
               </tr>
             </thead>
             <tbody>
-              {trafficLights.map(({ id, name, steps }) => (
-                <tr key={id}>
-                  <td>{id}</td>
+              {trafficLights.map(({ _id, name, steps }, index) => (
+                <tr key={_id}>
+                  <td>{index + 1}</td>
                   <td>{name}</td>
                   <td>{steps}</td>
                 </tr>
@@ -47,7 +45,7 @@ export function TrafficLights() {
           </Table>
           <Row>
             <Col xs="auto">
-              <Button color="primary" onClick={fetchLights}>
+              <Button color="primary" onClick={updateTrafficLights}>
                 Reload data
               </Button>
             </Col>
