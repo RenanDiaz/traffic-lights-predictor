@@ -13,7 +13,7 @@ export const SeparatorRow = styled(Row).attrs((props) => ({
 
 export function Loader({ isLoading }) {
   return (
-    <Modal centered isOpen={isLoading} contentClassName="bg-transparent">
+    <Modal centered isOpen={isLoading} fade={false} contentClassName="bg-transparent border-0">
       <ModalBody>
         <Row className="justify-content-center">
           <Col xs="auto">
