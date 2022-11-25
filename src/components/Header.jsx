@@ -23,7 +23,7 @@ export function Header() {
 
   return (
     <div>
-      <Navbar dark container="fluid" fixed="top" expand="md">
+      <Navbar dark color="dark" container="fluid" fixed="top" expand="md">
         <NavbarBrand href="/">Traffic Lights Predictor</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
