@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Col, Row, Table } from 'reactstrap';
+import React from 'react';
+import { Button, Col, Row, Table } from 'reactstrap';
 import { fetchLights } from '../../utils/api-client';
 import { SeparatorRow } from '../Utils';
 
@@ -16,9 +16,7 @@ export function TrafficLights() {
       steps: 2,
     },
   ];
-  useEffect(() => {
-    fetchLights();
-  }, []);
+
   return (
     <>
       <Row>
@@ -47,6 +45,13 @@ export function TrafficLights() {
               ))}
             </tbody>
           </Table>
+          <Row>
+            <Col xs="auto">
+              <Button color="primary" onClick={fetchLights}>
+                Reload data
+              </Button>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </>
