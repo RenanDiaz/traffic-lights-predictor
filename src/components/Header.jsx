@@ -19,6 +19,8 @@ export function Header() {
 
   const toggle = () => setIsOpen(!isOpen);
 
+  const collapse = () => setIsOpen(false);
+
   return (
     <div>
       <Navbar dark container="fluid" fixed="top" expand="md">
@@ -27,12 +29,12 @@ export function Header() {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink className="nav-link" to="test">
+              <NavLink className="nav-link" to="test" onClick={collapse}>
                 Test
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className="nav-link" to="github">
+              <NavLink className="nav-link" to="github" onClick={collapse}>
                 GitHub
               </NavLink>
             </NavItem>
