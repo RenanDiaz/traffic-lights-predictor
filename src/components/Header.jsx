@@ -29,13 +29,13 @@ export function Header() {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink className="nav-link" to="test" onClick={collapse}>
-                Test
+              <NavLink className="nav-link" to="list" onClick={collapse}>
+                Traffic lights
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className="nav-link" to="github" onClick={collapse}>
-                GitHub
+              <NavLink className="nav-link" to="new" onClick={collapse}>
+                New traffic light
               </NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>

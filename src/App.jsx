@@ -2,6 +2,8 @@ import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ErrorPage } from './components/ErrorPage';
 import { Layout } from './components/Layout';
+import { NewTrafficLight } from './components/NewTrafficLight';
+import { TrafficLights } from './components/TrafficLights';
 
 const router = createBrowserRouter([
   {
@@ -10,15 +12,17 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: 'test',
-        element: <span>Test</span>,
+        path: 'list',
+        element: <TrafficLights />,
+      },
+      {
+        path: 'new',
+        element: <NewTrafficLight />,
       },
     ],
   },
 ]);
 
-function App() {
+export function App() {
   return <RouterProvider router={router} />;
 }
-
-export default App;
