@@ -4,6 +4,7 @@ import { SeparatorRow } from '../Utils';
 
 export function NewTrafficLight() {
   const [name, setName] = useState('');
+  const [steps, setSteps] = useState(1);
   return (
     <>
       <Row>
@@ -18,6 +19,16 @@ export function NewTrafficLight() {
             <Col xs="auto">Name</Col>
             <Col>
               <Input value={name} onChange={({ target }) => setName(target.value)} />
+            </Col>
+          </Row>
+          <Row className="align-items-center mb-3">
+            <Col xs="auto">Steps</Col>
+            <Col>
+              <Input
+                type="number"
+                value={steps}
+                onChange={({ target }) => setSteps(target.value)}
+              />
             </Col>
           </Row>
           <Row className="justify-content-center">
