@@ -4,7 +4,6 @@ export async function fetchLights() {
     headers: {
       'Content-type': 'application/json',
       Accept: 'application/json',
-      'Access-Control-Allow-Origin': '*',
       'x-apikey': '63810012c890f30a8fd1f57a',
     },
   })
