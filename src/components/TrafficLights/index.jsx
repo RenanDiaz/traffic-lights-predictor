@@ -2,14 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
 import { fetchLights } from '../../utils/api-client';
-import { SeparatorRow } from '../Utils';
+import { Loader, SeparatorRow } from '../Utils';
 
 export function TrafficLights() {
   const [trafficLights, setTrafficLights] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const updateTrafficLights = async () => {
-    const response = await fetchLights();
-    setTrafficLights(response);
+  const updateTrafficLights = () => {
+    setIsLoading(true);
+    fetchLights().then((response) => {
+      setTrafficLights(response);
+      setIsLoading(false);
+    });
   };
 
   useEffect(() => {
@@ -18,6 +22,7 @@ export function TrafficLights() {
 
   return (
     <>
+      <Loader isLoading={isLoading} />
       <Row>
         <Col>
           <h1>Traffic lights</h1>

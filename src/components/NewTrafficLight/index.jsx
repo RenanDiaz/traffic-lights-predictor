@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
 import { Button, Col, Input, Row } from 'reactstrap';
 import { postLight } from '../../utils/api-client';
-import { SeparatorRow } from '../Utils';
+import { Loader, SeparatorRow } from '../Utils';
 
 export function NewTrafficLight() {
   const [name, setName] = useState('');
   const [steps, setSteps] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const postNewLight = () => {
+    setIsLoading(true);
     const body = { name, steps };
     postLight(body).then(() => {
       setName('');
       setSteps(1);
+      setIsLoading(false);
     });
   };
 
   return (
     <>
+      <Loader isLoading={isLoading} />
       <Row>
         <Col>
           <h1>New traffic light</h1>
