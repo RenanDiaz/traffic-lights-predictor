@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
 import { fetchLights } from '../../utils/api-client';
 import { Loader, SeparatorRow } from '../Utils';
@@ -7,6 +7,8 @@ import { Loader, SeparatorRow } from '../Utils';
 export function TrafficLights() {
   const [trafficLights, setTrafficLights] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const updateTrafficLights = () => {
     setIsLoading(true);
@@ -48,7 +50,7 @@ export function TrafficLights() {
             </thead>
             <tbody>
               {trafficLights.map(({ _id, name, steps }, index) => (
-                <tr key={_id}>
+                <tr key={_id} onClick={() => navigate(`${_id}/view`)}>
                   <td>{index + 1}</td>
                   <td>{name}</td>
                   <td>{steps}</td>

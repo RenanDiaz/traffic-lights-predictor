@@ -26,6 +26,25 @@ export async function fetchLights() {
   return response;
 }
 
+export async function fetchLight(id) {
+  const response = await fetch(`https://trafficlight-7363.restdb.io/rest/lights/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+      Accept: 'application/json',
+      'x-apikey': apiKey,
+    },
+  })
+    .then((data) => {
+      if (data.ok) {
+        return data.json();
+      }
+      throw new Error(data.statusText);
+    })
+    .catch(() => ({ _id: '63812795cbd79f6600010953', name: 'Santa Cruz', steps: '4' }));
+  return response;
+}
+
 export async function postLight(newLight) {
   const response = await fetch('https://trafficlight-7363.restdb.io/rest/lights', {
     method: 'POST',

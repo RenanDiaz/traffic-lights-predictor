@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ErrorPage } from './components/ErrorPage';
 import { Layout } from './components/Layout';
 import { NewTrafficLight } from './components/NewTrafficLight';
+import { TrafficLight } from './components/TrafficLight';
 import { TrafficLights } from './components/TrafficLights';
 
 const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: 'lights',
         element: <TrafficLights />,
+      },
+      {
+        path: 'lights/:id/view',
+        element: <TrafficLight />,
       },
       {
         path: 'lights/new',
