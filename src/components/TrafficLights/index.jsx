@@ -12,10 +12,9 @@ export function TrafficLights() {
 
   const updateTrafficLights = () => {
     setIsLoading(true);
-    fetchLights().then((response) => {
-      setTrafficLights(response);
-      setIsLoading(false);
-    });
+    fetchLights()
+      .then((response) => setTrafficLights(response))
+      .finally(() => setIsLoading(false));
   };
 
   useEffect(() => {

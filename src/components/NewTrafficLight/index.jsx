@@ -11,11 +11,12 @@ export function NewTrafficLight() {
   const postNewLight = () => {
     setIsLoading(true);
     const body = { name, steps };
-    postLight(body).then(() => {
-      setName('');
-      setSteps(1);
-      setIsLoading(false);
-    });
+    postLight(body)
+      .then(() => {
+        setName('');
+        setSteps(1);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (

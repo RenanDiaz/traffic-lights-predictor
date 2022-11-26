@@ -45,6 +45,28 @@ export async function fetchLight(id) {
   return response;
 }
 
+export async function fetchStepsFor(id) {
+  const date = new Date();
+  const midnight = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  const response = await fetch(
+    `https://trafficlight-7363.restdb.io/rest/steps?q={"lightId": "${id}", "datetime": {"$gt": ${midnight.getTime()}}}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        Accept: 'application/json',
+        'x-apikey': apiKey,
+      },
+    }
+  ).then((data) => {
+    if (data.ok) {
+      return data.json();
+    }
+    throw new Error(data.statusText);
+  });
+  return response;
+}
+
 export async function postLight(newLight) {
   const response = await fetch('https://trafficlight-7363.restdb.io/rest/lights', {
     method: 'POST',
@@ -62,8 +84,25 @@ export async function postLight(newLight) {
       throw new Error(data.statusText);
     })
     .catch((error) => {
-      // eslint-disable-next-line
-      console.error(error);
+      throw error;
     });
+  return response;
+}
+
+export async function postStepChange(stepChange) {
+  const response = await fetch('https://trafficlight-7363.restdb.io/rest/steps', {
+    method: 'POST',
+    body: JSON.stringify(stepChange),
+    headers: {
+      'Content-type': 'application/json',
+      Accept: 'application/json',
+      'x-apikey': apiKey,
+    },
+  }).then((data) => {
+    if (data.ok) {
+      return data.json();
+    }
+    throw new Error(data.statusText);
+  });
   return response;
 }
