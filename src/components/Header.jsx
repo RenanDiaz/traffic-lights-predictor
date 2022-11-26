@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from 'reactstrap';
+import styled from 'styled-components';
+import Clock from './Clock';
+
+const ClockContainer = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 60px;
+`;
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +37,9 @@ export function Header() {
           </Nav>
         </Collapse>
       </Navbar>
+      <ClockContainer>
+        <Clock />
+      </ClockContainer>
     </div>
   );
 }

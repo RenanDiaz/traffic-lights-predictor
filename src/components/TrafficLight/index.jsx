@@ -123,7 +123,16 @@ export function TrafficLight() {
                   <tr key={_id}>
                     <td>{index + 1}</td>
                     <td align="right">{step}</td>
-                    <td>{new Date(datetime).toString()}</td>
+                    <td>
+                      {new Date(datetime).toLocaleString('es-ES', {
+                        day: 'numeric',
+                        month: 'numeric',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                      })}
+                    </td>
                   </tr>
                 ))}
               </tbody>
