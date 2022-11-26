@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Alert, Button, Col, Row } from 'reactstrap';
+import { Alert, Button, Col, Row, Table } from 'reactstrap';
 import { fetchLight, fetchStepsFor, postStepChange } from '../../utils/api-client';
 import { Loader } from '../Utils';
 
@@ -25,12 +25,21 @@ export function TrafficLight() {
     setErrors(newErrors);
   };
 
+  const updateSteps = () => {
+    fetchStepsFor(id)
+      .then((response) => setStepsDetails(response))
+      .catch((error) => addError(error));
+  };
+
   const activateStep = (step) => {
     const datetime = Date.now();
     const body = { lightId: id, step, datetime };
     setIsLoading(true);
     postStepChange(body)
-      .then(() => setStepActive(step))
+      .then(() => {
+        setStepActive(step);
+        updateSteps();
+      })
       .catch((error) => addError(error.message))
       .finally(() => setIsLoading(false));
   };
@@ -39,9 +48,7 @@ export function TrafficLight() {
     const newValue = !detailsOpen;
     setDetailsOpen(newValue);
     if (newValue) {
-      fetchStepsFor(id)
-        .then((response) => setStepsDetails(response))
-        .catch((error) => addError(error));
+      updateSteps();
     }
   };
 
@@ -93,7 +100,7 @@ export function TrafficLight() {
           ))}
         </Col>
       </Row>
-      <Row>
+      <Row className="mb-3">
         <Col>
           <Button color="primary" onClick={toggleDetails}>
             {detailsOpen ? 'Hide details' : 'Show details'}
@@ -101,14 +108,24 @@ export function TrafficLight() {
         </Col>
       </Row>
       {detailsOpen && (
-        <Row>
-          <Col>
-            {stepsDetails.map(({ _id, step, datetime }) => (
-              <tr key={_id}>
-                <td>Step {step}</td>
-                <td>{datetime}</td>
-              </tr>
-            ))}
+        <Row className="mb-3">
+          <Col xs="auto">
+            <Table dark>
+              <thead>
+                <tr>
+                  <th>Step</th>
+                  <th>Datetime</th>
+                </tr>
+              </thead>
+              <tbody>
+                {stepsDetails.map(({ _id, step, datetime }) => (
+                  <tr key={_id}>
+                    <td>{step}</td>
+                    <td>{new Date(datetime).toString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
           </Col>
         </Row>
       )}
