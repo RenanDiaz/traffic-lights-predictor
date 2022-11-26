@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from 'reactstrap';
 import styled from 'styled-components';
-import Clock from './Clock';
+import { Clock } from './Clock';
 
 const ClockContainer = styled.div`
   position: absolute;

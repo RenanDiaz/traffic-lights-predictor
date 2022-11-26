@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const clockTile = {
   color: 'white',
@@ -11,46 +11,36 @@ const clockSpan = {
 
 let runner;
 
-class Clock extends Component {
-  constructor(props) {
-    super(props);
-    const time = new Date().toLocaleTimeString('en-UK', {
+export function Clock() {
+  const [time, setTime] = useState(
+    new Date().toLocaleTimeString('en-UK', {
       hour12: false,
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
-    });
-    this.state = {
-      time,
-    };
-  }
+    })
+  );
 
-  componentDidMount() {
+  useEffect(() => {
     runner = setInterval(() => {
-      const time = new Date().toLocaleTimeString('en-UK', {
+      const newTime = new Date().toLocaleTimeString('en-UK', {
         hour12: false,
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
       });
-      this.setState({ time });
+      setTime(newTime);
     }, 500);
-  }
+    return () => {
+      if (runner) {
+        clearInterval(runner);
+      }
+    };
+  }, []);
 
-  componentWillUnmount() {
-    if (runner) {
-      clearInterval(runner);
-    }
-  }
-
-  render() {
-    const { time } = this.state;
-    return (
-      <div style={clockTile}>
-        <span style={clockSpan}>{time}</span>
-      </div>
-    );
-  }
+  return (
+    <div style={clockTile}>
+      <span style={clockSpan}>{time}</span>
+    </div>
+  );
 }
-
-export default Clock;
