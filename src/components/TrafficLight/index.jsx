@@ -131,7 +131,7 @@ export function TrafficLight() {
               <tbody>
                 {stepsDetails.map(({ _id, step, datetime }, index) => (
                   <tr key={_id}>
-                    <td>{index + 1}</td>
+                    <td>{stepsDetails.length - index}</td>
                     <td align="right">{step}</td>
                     <td>
                       {new Date(datetime).toLocaleString('es-ES', {
@@ -143,7 +143,7 @@ export function TrafficLight() {
                         second: '2-digit',
                       })}
                     </td>
-                    <td align="right">{timeDifference(datetime, stepsDetails[index + 1])}</td>
+                    <td align="right">{timeDifference(datetime, stepsDetails[index - 1])}</td>
                   </tr>
                 ))}
               </tbody>
