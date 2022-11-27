@@ -2,7 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Alert, Button, Col, Row, Table } from 'reactstrap';
 import { fetchLight, fetchStepsFor, postStepChange } from '../../utils/api-client';
+import { millisecondsToTime } from '../../utils/commons';
 import { Loader } from '../Utils';
+
+function timeDifference(datetime, nextStep) {
+  if (nextStep) {
+    const diff = nextStep.datetime - datetime;
+    return diff;
+  }
+  return 0;
+}
 
 export function TrafficLight() {
   const [trafficLight, setTrafficLight] = useState({ name: 'Traffic light', steps: 0 });
@@ -116,6 +125,7 @@ export function TrafficLight() {
                   <th>#</th>
                   <th>Step</th>
                   <th>Datetime</th>
+                  <th>Duration</th>
                 </tr>
               </thead>
               <tbody>
@@ -132,6 +142,9 @@ export function TrafficLight() {
                         minute: '2-digit',
                         second: '2-digit',
                       })}
+                    </td>
+                    <td align="right">
+                      {millisecondsToTime(timeDifference(datetime, stepsDetails[index + 1]))}
                     </td>
                   </tr>
                 ))}

@@ -10,7 +10,8 @@
     ],
     "import/prefer-default-export": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "no-nested-ternary": "off"
   },
   "env": {
     "browser": true,

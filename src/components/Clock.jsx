@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const clockTile = {
   color: 'white',
-  textAlign: 'center',
+  textAlign: 'left',
 };
 
 const clockSpan = {

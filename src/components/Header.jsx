@@ -5,9 +5,12 @@ import styled from 'styled-components';
 import { Clock } from './Clock';
 
 const ClockContainer = styled.div`
-  position: absolute;
+  position: fixed;
   right: 10px;
   top: 60px;
+  background: #000;
+  border-radius: 5px;
+  width: 72px;
 `;
 
 export function Header() {
