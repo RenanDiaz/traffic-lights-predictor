@@ -48,8 +48,9 @@ export async function fetchLight(id) {
 export async function fetchStepsFor(id) {
   const date = new Date();
   const midnight = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  const query = { lightId: id, datetime: { $gt: midnight.getTime() } };
   const response = await fetch(
-    `https://trafficlight-7363.restdb.io/rest/steps?q={"lightId": "${id}", "datetime": {"$gt": ${midnight.getTime()}}}`,
+    `https://trafficlight-7363.restdb.io/rest/steps?q=${JSON.stringify(query)}&sort=datetime`,
     {
       method: 'GET',
       headers: {
