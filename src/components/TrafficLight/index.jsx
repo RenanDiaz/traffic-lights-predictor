@@ -8,9 +8,9 @@ import { Loader } from '../Utils';
 function timeDifference(datetime, nextStep) {
   if (nextStep) {
     const diff = nextStep.datetime - datetime;
-    return diff;
+    return millisecondsToTime(diff);
   }
-  return 0;
+  return '';
 }
 
 export function TrafficLight() {
@@ -143,9 +143,7 @@ export function TrafficLight() {
                         second: '2-digit',
                       })}
                     </td>
-                    <td align="right">
-                      {millisecondsToTime(timeDifference(datetime, stepsDetails[index + 1]))}
-                    </td>
+                    <td align="right">{timeDifference(datetime, stepsDetails[index + 1])}</td>
                   </tr>
                 ))}
               </tbody>
