@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Alert, Button, Col, Row, Table } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { fetchLight, fetchStepsFor, postStepChange } from '../../utils/api-client';
 import { millisecondsToTime } from '../../utils/commons';
 import { Loader } from '../Utils';
@@ -22,6 +24,8 @@ export function TrafficLight() {
   const [errors, setErrors] = useState([]);
 
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   const addError = (newError) => {
     const newErrors = errors.concat([newError]);
@@ -84,7 +88,10 @@ export function TrafficLight() {
           {error}
         </Alert>
       ))}
-      <Row>
+      <Row className="align-items-center">
+        <Col xs="auto" onClick={() => navigate('/lights')}>
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </Col>
         <Col>
           <h1>{trafficLight.name}</h1>
         </Col>
