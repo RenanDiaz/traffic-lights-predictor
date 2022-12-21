@@ -60,27 +60,12 @@ export async function fetchStepsFor(id) {
         'x-apikey': apiKey,
       },
     }
-  )
-    .then((data) => {
-      if (data.ok) {
-        return data.json();
-      }
-      throw new Error(data.statusText);
-    })
-    .catch(() => [
-      {
-        _id: '63822288cbd79f660001124f',
-        lightId: '6382214ccbd79f6600011248',
-        step: 2,
-        datetime: 1669472901147,
-      },
-      {
-        _id: '6382227acbd79f660001124e',
-        lightId: '6382214ccbd79f6600011248',
-        step: 1,
-        datetime: 1669472888912,
-      },
-    ]);
+  ).then((data) => {
+    if (data.ok) {
+      return data.json();
+    }
+    throw new Error(data.statusText);
+  });
   return response;
 }
 
